@@ -4,10 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key> ExpenseTracker/Managers/ApplePayManager.swift import PassKit  class ApplePayManager: NSObject {     static let shared = ApplePayManager()     private var store: TransactionStore?          private override init() {         super.init()     }          func setup(with store: TransactionStore) {         self.store = store         startMonitoring()     }          / 请求授权访问 Apple Pay 交易记录     func requestTransactionAccess() {         let library = PKPassLibrary()         / 检查是否支持 Apple Pay         if library.isPaymentPassActivationAvailable() {  / 修正：添加括号调用方法             print("设备支持 Apple Pay")         }     }          / 监听新的 Apple Pay 交易     private func startMonitoring() {         NotificationCenter.default.addObserver(             self,             selector: #selector(handleNewTransaction),             name: NSNotification.Name.NSProcessInfoPowerStateDidChange,             object: nil         )     }          @objc private func handleNewTransaction(notification: Notification) {         / 创建示例交易记录         let transaction = Transaction(             id: UUID(),             amount: 100.0,             type: .expense,             category: .shopping,             date: Date(),             note: "Apple Pay 交易"         )                  / 保存交易记录         DispatchQueue.main.async { [weak self] in             self?.store?.addTransaction(transaction)         }     } }  / 配置 ApplePayManager extension ApplePayManager {     / 检查设备是否支持 Apple Pay     func canMakePayments() -&gt; Bool {         return PKPaymentAuthorizationController.canMakePayments()     }          / 获取支持的支付网络     func getSupportedNetworks() -&gt; [PKPaymentNetwork] {         return [.masterCard, .visa, .amex, .chinaUnionPay]     } ExpenseTrackerWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
 		<key>ExpenseTracker.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>ExpenseTrackerShared.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>ExpenseTrackerWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 </dict>

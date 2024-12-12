@@ -1,0 +1,44 @@
+/* General */
+"app.name" = "记账本";
+"tab.home" = "首页";
+"tab.statistics" = "统计";
+"tab.settings" = "设置";
+
+/* Transaction */
+"transaction.new" = "新建记录";
+"transaction.amount" = "金额";
+"transaction.type" = "类型";
+"transaction.category" = "分类";
+"transaction.note" = "备注";
+"transaction.expense" = "支出";
+"transaction.income" = "收入";
+
+/* Categories */
+"category.food" = "餐饮";
+"category.transport" = "交通";
+"category.shopping" = "购物";
+"category.entertainment" = "娱乐";
+"category.health" = "医疗";
+"category.other" = "其他";
+
+/* Statistics */
+"stats.total_expense" = "总支出";
+"stats.total_income" = "总收入";
+"stats.daily_average" = "日均支出";
+"stats.max_expense" = "最大支出";
+"stats.time_range" = "时间范围";
+"stats.week" = "本周";
+"stats.month" = "本月";
+"stats.year" = "今年";
+
+/* Settings */
+"settings.title" = "设置";
+"settings.language" = "语言";
+"settings.language.english" = "英文";
+"settings.language.chinese" = "中文";
+"settings.budget" = "月度预算";
+"settings.notifications" = "通知";
+"settings.security" = "安全";
+"settings.export_data" = "导出数据";
+"settings.about" = "关于";
+"settings.version" = "版本";

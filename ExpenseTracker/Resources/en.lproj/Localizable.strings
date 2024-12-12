@@ -1,0 +1,44 @@
+/* General */
+"app.name" = "Expense Tracker";
+"tab.home" = "Home";
+"tab.statistics" = "Statistics";
+"tab.settings" = "Settings";
+
+/* Transaction */
+"transaction.new" = "New Transaction";
+"transaction.amount" = "Amount";
+"transaction.type" = "Type";
+"transaction.category" = "Category";
+"transaction.note" = "Note";
+"transaction.expense" = "Expense";
+"transaction.income" = "Income";
+
+/* Categories */
+"category.food" = "Food";
+"category.transport" = "Transport";
+"category.shopping" = "Shopping";
+"category.entertainment" = "Entertainment";
+"category.health" = "Health";
+"category.other" = "Other";
+
+/* Statistics */
+"stats.total_expense" = "Total Expense";
+"stats.total_income" = "Total Income";
+"stats.daily_average" = "Daily Average";
+"stats.max_expense" = "Max Expense";
+"stats.time_range" = "Time Range";
+"stats.week" = "Week";
+"stats.month" = "Month";
+"stats.year" = "Year";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.language" = "Language";
+"settings.language.english" = "English";
+"settings.language.chinese" = "Chinese";
+"settings.budget" = "Monthly Budget";
+"settings.notifications" = "Notifications";
+"settings.security" = "Security";
+"settings.export_data" = "Export Data";
+"settings.about" = "About";
+"settings.version" = "Version";
