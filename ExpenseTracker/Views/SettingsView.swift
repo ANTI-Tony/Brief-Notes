@@ -1,4 +1,3 @@
-// ExpenseTracker/Views/SettingsView.swift
 import SwiftUI
 import StoreKit
 
@@ -22,7 +21,7 @@ struct SettingsView: View {
                             Image(systemName: "banknote")
                         }
                         Spacer()
-                        Text("¥\(settings.monthlyBudget, specifier: "%.2f")")
+                        Text("\(settings.currency.symbol)\(settings.monthlyBudget, specifier: "%.2f")")
                             .foregroundColor(.secondary)
                     }
                     .contentShape(Rectangle())
@@ -38,6 +37,19 @@ struct SettingsView: View {
                 
                 // 通用设置
                 Section(header: Text("通用设置".localized())) {
+                    // 货币设置
+                    Picker(selection: $settings.currency) {
+                        ForEach(AppSettings.Currency.allCases, id: \.self) { currency in
+                            Text("\(currency.displayName) (\(currency.symbol))").tag(currency)
+                        }
+                    } label: {
+                        Label {
+                            Text("货币".localized())
+                        } icon: {
+                            Image(systemName: "creditcard")
+                        }
+                    }
+                    
                     // 语言设置
                     Picker(selection: $settings.language) {
                         ForEach(AppSettings.Language.allCases, id: \.self) { language in
@@ -46,7 +58,7 @@ struct SettingsView: View {
                         }
                     } label: {
                         Label {
-                            Text("语言".localized())
+                            Text("settings.language".localized())
                         } icon: {
                             Image(systemName: "globe")
                         }
@@ -59,6 +71,12 @@ struct SettingsView: View {
                         } icon: {
                             Image(systemName: "bell.badge")
                         }
+                    }
+                }
+                
+                Section(header: Text("自动记账")) {
+                    NavigationLink(destination: AutoRecordSettingsView()) {
+                        Label("自动记账设置", systemImage: "message")
                     }
                 }
                 

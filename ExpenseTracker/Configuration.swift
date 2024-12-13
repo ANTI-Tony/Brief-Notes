@@ -12,7 +12,7 @@ enum Configuration {
         
         // Register default settings
         let defaults: [String: Any] = [
-            "monthly_budget": 5000.0,
+            "monthly_budget": 1800.0,
             "notifications_enabled": true
         ]
         UserDefaults.standard.register(defaults: defaults)

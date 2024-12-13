@@ -1,4 +1,3 @@
-// ExpenseTracker/Managers/ApplePayManager.swift
 import PassKit
 
 class ApplePayManager: NSObject {

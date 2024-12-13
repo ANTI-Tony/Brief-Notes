@@ -7,11 +7,13 @@ struct ExpenseTrackerApp: App {
     
     init() {
         Configuration.setupInitialConfiguration()
+        AutoRecordMonitor.shared.setup(with: store)
+        AutoRecordMonitor.shared.startMonitoring()
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
                 .environmentObject(settings)
                 .environmentObject(store)
                 .environment(\.locale, settings.language.locale)
@@ -20,6 +22,4 @@ struct ExpenseTrackerApp: App {
                 }
         }
     }
-    
-    
 }
