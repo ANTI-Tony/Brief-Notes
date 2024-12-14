@@ -16,7 +16,7 @@ struct SettingsView: View {
                 Section {
                     HStack {
                         Label {
-                            Text("每月预算".localized())
+                            Text("settings.monthly.budget".localized())
                         } icon: {
                             Image(systemName: "banknote")
                         }
@@ -30,13 +30,13 @@ struct SettingsView: View {
                         showingBudgetEditor = true
                     }
                 } header: {
-                    Text("预算管理".localized())
+                    Text("settings.budget.management".localized())
                 } footer: {
-                    Text("设置每月预算以便更好地管理支出".localized())
+                    Text("settings.budget.description".localized())
                 }
                 
                 // 通用设置
-                Section(header: Text("通用设置".localized())) {
+                Section(header: Text("settings.general".localized())) {
                     // 货币设置
                     Picker(selection: $settings.currency) {
                         ForEach(AppSettings.Currency.allCases, id: \.self) { currency in
@@ -44,7 +44,7 @@ struct SettingsView: View {
                         }
                     } label: {
                         Label {
-                            Text("货币".localized())
+                            Text("settings.currency".localized())
                         } icon: {
                             Image(systemName: "creditcard")
                         }
@@ -67,22 +67,22 @@ struct SettingsView: View {
                     // 通知设置
                     Toggle(isOn: $settings.notificationsEnabled) {
                         Label {
-                            Text("预算提醒".localized())
+                            Text("settings.notifications".localized())
                         } icon: {
                             Image(systemName: "bell.badge")
                         }
                     }
                 }
                 
-                Section(header: Text("自动记账")) {
+                Section(header: Text("settings.auto.record".localized())) {
                     NavigationLink(destination: AutoRecordSettingsView()) {
-                        Label("自动记账设置", systemImage: "message")
+                        Label("settings.auto.record.settings".localized(), systemImage: "message")
                     }
                 }
-                
-                Section(header: Text("快捷功能")) {
+
+                Section(header: Text("settings.quick.actions".localized())) {
                     NavigationLink(destination: QuickTransactionListView()) {
-                        Label("快捷记账管理", systemImage: "bolt")
+                        Label("settings.quick.transaction.management".localized(), systemImage: "bolt")
                     }
                 }
                 
@@ -96,15 +96,15 @@ struct SettingsView: View {
                         showingResetAlert = true
                     } label: {
                         Label {
-                            Text("清除所有数据".localized())
+                            Text("settings.clear.all.data".localized())
                         } icon: {
                             Image(systemName: "trash")
                         }
                     }
                 } header: {
-                    Text("数据管理".localized())
+                    Text("settings.data.management".localized())
                 } footer: {
-                    Text("导出数据将生成CSV文件，可以在其他应用中打开".localized())
+                    Text("settings.export.data.description".localized())
                 }
                 
                 // 关于与帮助
@@ -116,7 +116,7 @@ struct SettingsView: View {
                         }
                     } label: {
                         Label {
-                            Text("给个好评".localized())
+                            Text("settings.rate.us".localized())
                         } icon: {
                             Image(systemName: "star")
                         }
@@ -125,7 +125,7 @@ struct SettingsView: View {
                     // 版本信息
                     HStack {
                         Label {
-                            Text("当前版本".localized())
+                            Text("settings.current.version".localized())
                         } icon: {
                             Image(systemName: "info.circle")
                         }
@@ -137,37 +137,37 @@ struct SettingsView: View {
                     // 开发者信息
                     HStack {
                         Label {
-                            Text("开发者".localized())
+                            Text("settings.developer".localized())
                         } icon: {
                             Image(systemName: "person")
                         }
                         Spacer()
-                        Text("最爱tyc的wjb")
+                        Text("settings.developer.name".localized())
                             .foregroundColor(.secondary)
                     }
                 } header: {
-                    Text("关于".localized())
+                    Text("settings.about".localized())
                 }
             }
-            .navigationTitle("设置".localized())
-            .alert("设置预算".localized(), isPresented: $showingBudgetEditor) {
-                TextField("输入预算金额".localized(), text: $tempBudget)
+            .navigationTitle("settings.title".localized())
+            .alert("settings.budget.title".localized(), isPresented: $showingBudgetEditor) {
+                TextField("settings.budget.input".localized(), text: $tempBudget)
                     .keyboardType(.decimalPad)
-                Button("取消".localized(), role: .cancel) { }
-                Button("确定".localized()) {
+                Button("action.cancel".localized(), role: .cancel) { }
+                Button("action.confirm".localized()) {
                     if let budget = Double(tempBudget) {
                         settings.monthlyBudget = budget
                     }
                 }
             }
-            .alert("确认清除数据".localized(), isPresented: $showingResetAlert) {
-                Button("取消".localized(), role: .cancel) { }
-                Button("清除".localized(), role: .destructive) {
+            .alert("settings.clear.confirm".localized(), isPresented: $showingResetAlert) {
+                Button("action.cancel".localized(), role: .cancel) { }
+                Button("action.clear".localized(), role: .destructive) {
                     store.clearAllData()
                     settings.resetToDefault()
                 }
             } message: {
-                Text("此操作将清除所有交易记录和设置，且无法恢复。确定要继续吗？".localized())
+                Text("settings.clear.message".localized())
             }
         }
     }

@@ -104,7 +104,6 @@ struct VoiceInputView: View {
    
     private func saveTransaction() {
         guard let amount = parsedAmount else {
-            print("保存失败：没有解析到金额")
             return
         }
         
@@ -114,11 +113,9 @@ struct VoiceInputView: View {
             category: parsedCategory ?? .other,
             note: parsedNote ?? recognizedText
         )
-        
-        print("正在保存交易: 金额 \(amount), 类型 \(parsedType), 分类 \(parsedCategory?.rawValue ?? "other")")
+
         store.addTransaction(transaction)
-        store.saveTransactions() // 确保调用保存方法
-        print("交易已保存到存储")
+        store.saveTransactions()
 
         // 添加成功提示和关闭
         withAnimation {

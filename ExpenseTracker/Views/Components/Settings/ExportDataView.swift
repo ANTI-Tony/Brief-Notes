@@ -9,7 +9,7 @@ struct ExportDataView: View {
     var body: some View {
         Button(action: prepareAndExportData) {
             Label {
-                Text("settings.export_data".localized())
+                Text("settings.export.data".localized())
             } icon: {
                 Image(systemName: "square.and.arrow.up")
             }

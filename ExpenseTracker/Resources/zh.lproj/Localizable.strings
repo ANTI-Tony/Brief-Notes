@@ -12,6 +12,17 @@
 "transaction.note" = "备注";
 "transaction.expense" = "支出";
 "transaction.income" = "收入";
+"transaction.amount.input" = "输入金额";
+"transaction.note.input" = "添加备注";
+"transaction.save.failed" = "保存失败: 没有解析到金额";
+"transaction.edit" = "编辑交易";
+"transaction.date" = "日期";
+"transaction.date.select" = "选择日期";
+
+/* Budget */
+"budget.monthly" = "本月预算";
+"budget.spent" = "已支出";
+"budget.remaining" = "剩余";
 
 /* Categories */
 "category.food" = "餐饮";
@@ -22,23 +33,61 @@
 "category.other" = "其他";
 
 /* Statistics */
-"stats.total_expense" = "总支出";
-"stats.total_income" = "总收入";
-"stats.daily_average" = "日均支出";
-"stats.max_expense" = "最大支出";
-"stats.time_range" = "时间范围";
+"stats.total.expense" = "总支出";
+"stats.total.income" = "总收入";
+"stats.daily.average" = "日均支出";
+"stats.max.expense" = "最大支出";
+"stats.time.range" = "时间范围";
 "stats.week" = "本周";
 "stats.month" = "本月";
 "stats.year" = "今年";
+"stats.title" = "支出统计";
+"stats.time.range" = "时间范围";
+"stats.chart.type" = "图表类型";
+"stats.chart.category" = "分类统计";
+"stats.chart.trend" = "趋势分析";
 
 /* Settings */
 "settings.title" = "设置";
+"settings.budget.management" = "预算管理";
+"settings.budget.description" = "设置每月预算以便更好地管理支出";
+"settings.budget.title" = "设置预算";
+"settings.monthly.budget" = "每月预算";
+"settings.budget.input" = "输入预算金额";
+"settings.general" = "通用设置";
 "settings.language" = "语言";
 "settings.language.english" = "英文";
 "settings.language.chinese" = "中文";
-"settings.budget" = "月度预算";
-"settings.notifications" = "通知";
-"settings.security" = "安全";
-"settings.export_data" = "导出数据";
+"settings.currency" = "货币";
+"settings.notifications" = "预算提醒";
+"settings.auto.record" = "自动记账";
+"settings.auto.record.settings" = "自动记账设置";
+"settings.quick.actions" = "快捷功能";
+"settings.quick.transaction.management" = "快捷记账管理";
+"settings.data.management" = "数据管理";
+"settings.export.data" = "导出数据";
+"settings.export.data.description" = "导出数据将生成CSV文件";
+"settings.clear.all.data" = "清除所有数据";
+"settings.clear.confirm" = "确认清除数据";
+"settings.clear.message" = "此操作将清除所有交易记录和设置，且无法恢复。确定要继续吗？";
 "settings.about" = "关于";
-"settings.version" = "版本";
+"settings.rate.us" = "给个好评";
+"settings.current.version" = "当前版本";
+"settings.developer" = "开发者";
+"settings.auto.record.settings" = "自动记账设置";
+"settings.auto.record.sms.enable" = "启用短信自动记账";
+"settings.auto.record.sms.description" = "将自动解析微信支付相关短信并记录交易";
+"settings.auto.record.sms.types" = "支持的短信类型";
+"settings.auto.record.sms.wechat.payment" = "微信支付收款通知";
+"settings.auto.record.sms.wechat.transaction" = "微信支付交易通知";
+"settings.auto.record.notes" = "注意事项";
+"settings.auto.record.note.format" = "• 仅支持标准格式的微信支付通知短信";
+"settings.auto.record.note.requirement" = "• 需要手机收到交易通知短信";
+"settings.auto.record.note.category" = "• 交易分类可能需要手动调整";
+"settings.developer.name" = "最爱tyc的wjb";
+
+/* Actions */
+"action.save" = "保存";
+"action.cancel" = "取消";
+"action.confirm" = "确定";
+"action.clear" = "清除";

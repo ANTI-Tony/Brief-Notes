@@ -12,6 +12,17 @@
 "transaction.note" = "Note";
 "transaction.expense" = "Expense";
 "transaction.income" = "Income";
+"transaction.amount.input" = "Enter amount";
+"transaction.note.input" = "Add note";
+"transaction.save.failed" = "Save failed: No amount provided";
+"transaction.edit" = "Edit Transaction";
+"transaction.date" = "Date";
+"transaction.date.select" = "Select Date";
+
+/* Budget */
+"budget.monthly" = "Monthly Budget";
+"budget.spent" = "Spent";
+"budget.remaining" = "Remaining";
 
 /* Categories */
 "category.food" = "Food";
@@ -22,23 +33,61 @@
 "category.other" = "Other";
 
 /* Statistics */
-"stats.total_expense" = "Total Expense";
-"stats.total_income" = "Total Income";
-"stats.daily_average" = "Daily Average";
-"stats.max_expense" = "Max Expense";
-"stats.time_range" = "Time Range";
+"stats.total.expense" = "Total Expense";
+"stats.total.income" = "Total Income";
+"stats.daily.average" = "Daily Average";
+"stats.max.expense" = "Max Expense";
+"stats.time.range" = "Time Range";
 "stats.week" = "Week";
 "stats.month" = "Month";
 "stats.year" = "Year";
+"stats.title" = "Expense Statistics";
+"stats.time.range" = "Time Range";
+"stats.chart.type" = "Chart Type";
+"stats.chart.category" = "Category Analysis";
+"stats.chart.trend" = "Trend Analysis";
 
 /* Settings */
 "settings.title" = "Settings";
+"settings.budget.management" = "Budget Management";
+"settings.budget.description" = "Set monthly budget to better manage your expenses";
+"settings.budget.title" = "Set Budget";
+"settings.monthly.budget" = "Monthly Budget";
+"settings.budget.input" = "Enter budget amount";
+"settings.general" = "General Settings";
 "settings.language" = "Language";
 "settings.language.english" = "English";
 "settings.language.chinese" = "Chinese";
-"settings.budget" = "Monthly Budget";
-"settings.notifications" = "Notifications";
-"settings.security" = "Security";
-"settings.export_data" = "Export Data";
+"settings.currency" = "Currency";
+"settings.notifications" = "Budget Alerts";
+"settings.auto.record" = "Auto Record";
+"settings.auto.record.settings" = "Auto Record Settings";
+"settings.quick.actions" = "Quick Actions";
+"settings.quick.transaction.management" = "Quick Transaction Management";
+"settings.data.management" = "Data Management";
+"settings.export.data" = "Export Data";
+"settings.export.data.description" = "Export data will generate CSV file";
+"settings.clear.all.data" = "Clear All Data";
+"settings.clear.confirm" = "Confirm Clear Data";
+"settings.clear.message" = "This action will clear all transactions and settings, and cannot be recovered. Are you sure to continue?";
 "settings.about" = "About";
-"settings.version" = "Version";
+"settings.rate.us" = "Rate Us";
+"settings.current.version" = "Current Version";
+"settings.developer" = "Developer";
+"settings.auto.record.settings" = "Auto Record Settings";
+"settings.auto.record.sms.enable" = "Enable SMS Auto Recording";
+"settings.auto.record.sms.description" = "Will automatically parse WeChat payment SMS and record transactions";
+"settings.auto.record.sms.types" = "Supported SMS Types";
+"settings.auto.record.sms.wechat.payment" = "WeChat Payment Notification";
+"settings.auto.record.sms.wechat.transaction" = "WeChat Transaction Notification";
+"settings.auto.record.notes" = "Notes";
+"settings.auto.record.note.format" = "• Only supports standard WeChat payment notification SMS format";
+"settings.auto.record.note.requirement" = "• Requires receiving transaction notification SMS";
+"settings.auto.record.note.category" = "• Transaction categories may need manual adjustment";
+"settings.developer.name" = "WJB who loves TYC most";
+
+/* Actions */
+"action.save" = "Save";
+"action.cancel" = "Cancel";
+"action.confirm" = "Confirm";
+"action.clear" = "Clear";

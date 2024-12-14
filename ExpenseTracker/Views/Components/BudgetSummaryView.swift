@@ -1,4 +1,3 @@
-// ExpenseTracker/Views/Components/BudgetSummaryView.swift
 import SwiftUI
 
 struct BudgetSummaryView: View {
@@ -7,7 +6,7 @@ struct BudgetSummaryView: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Text("本月预算")
+            Text("budget.monthly".localized())
                 .font(.headline)
                 .foregroundColor(.secondary)
             
