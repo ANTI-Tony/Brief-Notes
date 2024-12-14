@@ -1,4 +1,3 @@
-// Views/VoiceInputView.swift
 import SwiftUI
 import Speech
 
@@ -10,6 +9,9 @@ struct VoiceInputView: View {
     @State private var recognizedText = ""
     @State private var parsedAmount: Double?
     @State private var parsedCategory: Category?
+    @State private var parsedType: TransactionType = .expense
+    @State private var parsedNote: String?
+    @State private var showingSaveSuccess = false
     
     var body: some View {
         NavigationStack {
@@ -20,6 +22,7 @@ struct VoiceInputView: View {
                     .background(Color.secondary.opacity(0.1))
                     .cornerRadius(10)
                 
+                // 录音按钮
                 Button {
                     toggleRecording()
                 } label: {
@@ -28,19 +31,33 @@ struct VoiceInputView: View {
                         .foregroundColor(isRecording ? .red : .blue)
                 }
                 
-                if let amount = parsedAmount {
-                    Text("识别金额: ¥\(amount, specifier: "%.2f")")
+                // 显示解析结果
+                VStack(alignment: .leading, spacing: 10) {
+                    if let amount = parsedAmount {
+                        Text("金额: ¥\(amount, specifier: "%.2f")")
+                    }
+                    
+                    if let category = parsedCategory {
+                        Text("分类: \(category.rawValue)")
+                    }
+                    
+                    Text("类型: \(parsedType == .expense ? "支出" : "收入")")
+                    
+                    if let note = parsedNote {
+                        Text("备注: \(note)")
+                    }
                 }
+                .padding()
                 
-                if let category = parsedCategory {
-                    Text("识别分类: \(category.rawValue)")
-                }
+                Spacer()
                 
-                if parsedAmount != nil {
+                if !recognizedText.isEmpty {
                     Button("保存") {
                         saveTransaction()
+                        showingSaveSuccess = true
                     }
                     .buttonStyle(.borderedProminent)
+                    .padding()
                 }
             }
             .padding()
@@ -50,58 +67,67 @@ struct VoiceInputView: View {
                     isPresented = false
                 }
             )
+            .overlay {
+                if showingSaveSuccess {
+                    Text("保存成功")
+                        .padding()
+                        .background(Color.green.opacity(0.2))
+                        .cornerRadius(10)
+                        .transition(.scale.combined(with: .opacity))
+                }
+            }
         }
     }
-    
+   
     private func toggleRecording() {
         if isRecording {
             SpeechManager.shared.stopRecording()
+            isRecording = false
         } else {
             SpeechManager.shared.startRecording { text in
-                self.recognizedText = text
-                parseVoiceInput(text)
+                DispatchQueue.main.async {
+                    self.recognizedText = text
+                    self.parseVoiceInput(text)
+                }
             }
-        }
-        isRecording.toggle()
-    }
-    
-    private func parseVoiceInput(_ text: String) {
-        // 解析金额
-        let patterns = [
-            ".*花了(\\d+(\\.\\d+)?).*",
-            ".*支付(\\d+(\\.\\d+)?).*",
-            "(\\d+(\\.\\d+)?)元.*"
-        ]
-        
-        for pattern in patterns {
-            if let regex = try? NSRegularExpression(pattern: pattern),
-               let match = regex.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)),
-               let range = Range(match.range(at: 1), in: text) {
-                parsedAmount = Double(text[range])
-                break
-            }
-        }
-        
-        // 解析分类
-        for category in Category.allCases {
-            if text.contains(category.rawValue) {
-                parsedCategory = category
-                break
-            }
+            isRecording = true
         }
     }
-    
+   
+   private func parseVoiceInput(_ text: String) {
+       let result = ExpenseNLParser.shared.parseExpense(from: text)
+       parsedAmount = result.amount
+       parsedCategory = result.category
+       parsedType = result.type
+       parsedNote = result.note
+   }
+   
     private func saveTransaction() {
-        guard let amount = parsedAmount else { return }
+        guard let amount = parsedAmount else {
+            print("保存失败：没有解析到金额")
+            return
+        }
         
         let transaction = Transaction(
             amount: amount,
-            type: .expense,
+            type: parsedType,
             category: parsedCategory ?? .other,
-            note: recognizedText
+            note: parsedNote ?? recognizedText
         )
         
+        print("正在保存交易: 金额 \(amount), 类型 \(parsedType), 分类 \(parsedCategory?.rawValue ?? "other")")
         store.addTransaction(transaction)
-        isPresented = false
+        store.saveTransactions() // 确保调用保存方法
+        print("交易已保存到存储")
+
+        // 添加成功提示和关闭
+        withAnimation {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                isPresented = false
+            }
+        }
     }
 }

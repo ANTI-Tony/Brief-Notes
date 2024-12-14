@@ -2,45 +2,58 @@ import SwiftUI
 
 struct QuickInputView: View {
     @EnvironmentObject var store: TransactionStore
-    @State private var quickInputs: [QuickInput] = [
-        QuickInput(amount: 5, category: .food, note: "早餐"),
-        QuickInput(amount: 20, category: .transport, note: "公交")
-    ]
+    @EnvironmentObject var quickTransactionStore: QuickTransactionStore
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                ForEach(quickInputs) { input in
+                ForEach(quickTransactionStore.quickTransactions) { quickTransaction in
                     Button {
-                        addQuickTransaction(input)
+                        addQuickTransaction(quickTransaction)
                     } label: {
                         VStack {
-                            Text(input.category.icon)
-                                .font(.title2)
-                            Text("\(input.amount, specifier: "%.2f")")
-                                .bold()
-                            if let note = input.note {
-                                Text(note)
-                                    .font(.caption)
-                            }
+                            Text(quickTransaction.title)
+                                .font(.headline)
+                            Text(quickTransaction.category.rawValue)
+                                .font(.caption)
+                            Text("\(quickTransaction.type == .expense ? "-" : "+")\(quickTransaction.amount, specifier: "%.2f")")
+                                .foregroundColor(quickTransaction.type == .expense ? .red : .green)
                         }
                         .padding()
+                        .frame(minWidth: 80)
                         .background(Color.blue.opacity(0.1))
                         .cornerRadius(10)
                     }
                 }
+                
+                // 添加快捷方式的按钮
+                NavigationLink {
+                    QuickTransactionListView()
+                } label: {
+                    VStack {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                        Text("添加快捷")
+                            .font(.caption)
+                    }
+                    .padding()
+                    .frame(minWidth: 80)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(10)
+                }
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
     
-    private func addQuickTransaction(_ input: QuickInput) {
+    private func addQuickTransaction(_ quickTransaction: QuickTransaction) {
         let transaction = Transaction(
-            amount: input.amount,
-            type: .expense,
-            category: input.category,
-            note: input.note
+            amount: quickTransaction.amount,
+            type: quickTransaction.type,
+            category: quickTransaction.category,
+            note: quickTransaction.note
         )
+        
         store.addTransaction(transaction)
     }
 }

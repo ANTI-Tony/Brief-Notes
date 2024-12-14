@@ -4,6 +4,7 @@ import SwiftUI
 struct ExpenseTrackerApp: App {
     @StateObject private var settings = AppSettings()
     @StateObject private var store = TransactionStore()
+    @StateObject private var quickTransactionStore = QuickTransactionStore()
     
     init() {
         Configuration.setupInitialConfiguration()
@@ -16,6 +17,7 @@ struct ExpenseTrackerApp: App {
             SplashScreenView()
                 .environmentObject(settings)
                 .environmentObject(store)
+                .environmentObject(quickTransactionStore)
                 .environment(\.locale, settings.language.locale)
                 .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
                     settings.objectWillChange.send()

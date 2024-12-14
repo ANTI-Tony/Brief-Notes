@@ -5,7 +5,7 @@ struct ContentView: View {
     @StateObject private var settings = AppSettings()
     @State private var selectedTab = 0
     @State private var showLanguageAlert = false
-    @StateObject private var currencySettings = CurrencySettings() // 添加货币设置
+    @StateObject private var currencySettings = CurrencySettings()
     
     var body: some View {
         TabView(selection: $selectedTab) {

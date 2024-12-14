@@ -8,6 +8,7 @@ struct AddTransactionView: View {
     @State private var type: TransactionType = .expense
     @State private var category: Category = .other
     @State private var note: String = ""
+    @State private var isPresented = true
     
     var body: some View {
         NavigationStack {
@@ -46,16 +47,28 @@ struct AddTransactionView: View {
     }
     
     private func saveTransaction() {
-        guard let amountDouble = Double(amount), amountDouble > 0 else { return }
-        
-        let transaction = Transaction(
-            amount: amountDouble,
-            type: type,
-            category: category,
-            note: note.isEmpty ? nil : note
-        )
-        
-        store.addTransaction(transaction)
-        dismiss()
-    }
+         guard let amountValue = Double(amount) else {
+             print("保存失败: 没有解析到金额")
+             return
+         }
+         
+         let transaction = Transaction(
+             amount: amountValue,
+             type: type,
+             category: category,
+             note: note.isEmpty ? nil : note
+         )
+         
+         store.addTransaction(transaction)
+         
+         withAnimation {
+             let generator = UINotificationFeedbackGenerator()
+             generator.notificationOccurred(.success)
+             
+             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                 isPresented = false
+                 dismiss()
+             }
+         }
+     }
 }

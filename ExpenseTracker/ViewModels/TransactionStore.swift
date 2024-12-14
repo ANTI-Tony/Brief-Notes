@@ -17,6 +17,7 @@ class TransactionStore: ObservableObject {
     func addTransaction(_ transaction: Transaction) {
         transactions.append(transaction)
         saveTransactions()
+        print("添加了新交易，当前共有 \(transactions.count) 条记录")
     }
     
     func deleteTransaction(at offsets: IndexSet) {
@@ -32,6 +33,8 @@ class TransactionStore: ObservableObject {
     func saveTransactions() {
         if let encoded = try? JSONEncoder().encode(transactions) {
             defaults.set(encoded, forKey: transactionsKey)
+            defaults.synchronize()
+            print("交易数据已保存到 UserDefaults")
         }
     }
     
@@ -39,6 +42,7 @@ class TransactionStore: ObservableObject {
         if let data = defaults.data(forKey: transactionsKey),
            let decoded = try? JSONDecoder().decode([Transaction].self, from: data) {
             transactions = decoded
+            print("从 UserDefaults 加载了 \(transactions.count) 条交易记录")
         }
     }
     

@@ -80,6 +80,12 @@ struct SettingsView: View {
                     }
                 }
                 
+                Section(header: Text("快捷功能")) {
+                    NavigationLink(destination: QuickTransactionListView()) {
+                        Label("快捷记账管理", systemImage: "bolt")
+                    }
+                }
+                
                 // 数据管理
                 Section {
                     // 导出数据

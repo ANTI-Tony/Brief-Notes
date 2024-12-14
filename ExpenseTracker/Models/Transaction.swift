@@ -1,4 +1,3 @@
-// ExpenseTracker/Models/Transaction.swift
 import Foundation
 
 struct Transaction: Identifiable, Codable {

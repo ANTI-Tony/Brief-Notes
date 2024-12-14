@@ -2,8 +2,9 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var store: TransactionStore
+    @EnvironmentObject var quickTransactionStore: QuickTransactionStore
     @State private var showingAddTransaction = false
-    @State private var showingVoiceInput = false // 添加语音输入状态
+    @State private var showingVoiceInput = false
     
     var body: some View {
         NavigationStack {
@@ -13,6 +14,7 @@ struct HomeView: View {
                 
                 // 添加快捷输入栏
                 QuickInputView()
+                    .frame(height: 100) 
                 
                 // 快速添加按钮
                 Button(action: { showingAddTransaction = true }) {
