@@ -28,7 +28,7 @@ struct HomeView: View {
                 // 交易列表
                 TransactionListView()
             }
-            .navigationTitle("我的记账本".localized())
+            .navigationTitle("app.my.name".localized())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

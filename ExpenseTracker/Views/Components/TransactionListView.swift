@@ -15,13 +15,13 @@ struct TransactionListView: View {
                                 store.saveTransactions()
                             }
                         } label: {
-                            Label("删除".localized(), systemImage: "trash")
+                            Label("action.delete".localized(), systemImage: "trash")
                         }
                         
                         Button {
                             editingTransaction = transaction
                         } label: {
-                            Label("编辑".localized(), systemImage: "pencil")
+                            Label("action.edit".localized(), systemImage: "pencil")
                         }
                         .tint(.blue)
                     }

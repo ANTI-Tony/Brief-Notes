@@ -33,7 +33,7 @@ struct QuickInputView: View {
                     VStack {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
-                        Text("添加快捷")
+                        Text("quick.add".localized())
                             .font(.caption)
                     }
                     .padding()

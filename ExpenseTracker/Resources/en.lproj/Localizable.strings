@@ -1,8 +1,10 @@
 /* General */
 "app.name" = "Expense Tracker";
+"app.my.name" = "My Expense Tracker";
 "tab.home" = "Home";
 "tab.statistics" = "Statistics";
 "tab.settings" = "Settings";
+"quick.add" = "Add Shortcut";
 
 /* Transaction */
 "transaction.new" = "New Transaction";
@@ -91,3 +93,5 @@
 "action.cancel" = "Cancel";
 "action.confirm" = "Confirm";
 "action.clear" = "Clear";
+"action.delete" = "Delete";
+"action.edit" = "Edit";
